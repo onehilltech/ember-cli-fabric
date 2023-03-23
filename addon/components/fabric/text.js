@@ -2,7 +2,7 @@ import FabricObject from '../../lib/object';
 
 export default class FabricTextComponent extends FabricObject {
   createObject(fabric) {
-    return new fabric.Text(this.args.text, this.options);
+    return new fabric.Text(this.args.text ?? '', this.options);
   }
 
   get options() {

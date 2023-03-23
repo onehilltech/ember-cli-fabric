@@ -10,15 +10,19 @@ module('Integration | Component | fabric/ellipse', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Fabric::Ellipse />`);
+    await render(
+      hbs`<Fabric::Canvas as |canvas|><Fabric::Ellipse @canvas={{canvas}} /></Fabric::Canvas>`
+    );
 
     assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
-      <Fabric::Ellipse>
-        template block text
-      </Fabric::Ellipse>
+      <Fabric::Canvas as |canvas|>
+        <Fabric::Ellipse @canvas={{canvas}}>
+          template block text
+        </Fabric::Ellipse>
+      </Fabric::Canvas>
     `);
 
     assert.dom(this.element).hasText('template block text');

@@ -11,9 +11,12 @@ export default class FabricRegisterCanvas extends Modifier {
   @service
   fabric;
 
-  modify(element, [component]) {
+  constructor(owner, args) {
+    super(owner, args);
     registerDestructor(this, cleanup);
+  }
 
+  modify(element, [component]) {
     this.parentElement = element;
     this.fabric.registerCanvas(element, component);
   }

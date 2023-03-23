@@ -10,15 +10,19 @@ module('Integration | Component | fabric/circle', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Fabric::Circle />`);
+    await render(
+      hbs`<Fabric::Canvas as |canvas|><Fabric::Circle @canvas={{canvas}} /></Fabric::Canvas>`
+    );
 
     assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
-      <Fabric::Circle>
-        template block text
-      </Fabric::Circle>
+      <Fabric::Canvas as |canvas|>
+        <Fabric::Circle @canvas={{canvas}}>
+          template block text
+        </Fabric::Circle>
+      </Fabric::Canvas>
     `);
 
     assert.dom(this.element).hasText('template block text');

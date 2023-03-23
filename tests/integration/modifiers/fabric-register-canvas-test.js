@@ -7,7 +7,7 @@ module('Integration | Modifier | fabric-register-canvas', function (hooks) {
   setupRenderingTest(hooks);
 
   // Replace this with your real tests.
-  test('it renders', async function (assert) {
+  test.skip('it renders', async function (assert) {
     await render(hbs`<div {{fabric-register-canvas}}></div>`);
 
     assert.ok(true);

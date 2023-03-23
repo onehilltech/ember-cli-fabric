@@ -10,15 +10,19 @@ module('Integration | Component | fabric/group', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Fabric::Group />`);
+    await render(
+      hbs`<Fabric::Canvas as |canvas|><Fabric::Group @canvas={{canvas}} /></Fabric::Canvas>`
+    );
 
     assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
-      <Fabric::Group>
-        template block text
-      </Fabric::Group>
+      <Fabric::Canvas as |canvas|>
+        <Fabric::Group @canvas={{canvas}}>
+          template block text
+        </Fabric::Group>
+      </Fabric::Canvas>
     `);
 
     assert.dom(this.element).hasText('template block text');
